@@ -60,4 +60,4 @@ A POST routes "/api/friends". This will be used to handle incoming survey result
  -User 2: `[3, 2, 6, 4, 5, 1, 2, 5, 4, 1]
  -Total Difference: 2 + 1 + 2 =5
 
-7) Once you've found the current user's most compatible friend, display the result as a modal pop-up
+7) Once found the current user's most compatible friend, displays the result as a modal pop-up
