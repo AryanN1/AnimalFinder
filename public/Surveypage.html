@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Animal Finder - Survey</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="public/style.css">
+</head>
+<body>
+<div class="container-fluid">
+	<div class="jumbotron">
+		<h1>Survey Questions</h1><br>
+		<hr>
+		<form method="POST" action="/api/friends">
+			<h3><strong>About Youself</strong></h3>
+			<fieldset class="form-group">
+				<label for="name">Name</label>
+				<input type="text" class="form-control" placeholder="Your Name" id="name" name="name" required>
+			</fieldset>
+			<fieldset class="form-group">
+				<label for="photo">Link to  your Image </label>
+				<input type="text" class="form-control" placeholder=" http://placehold.it/" id="photo" name="photo" required>
+			</fieldset>
+			<hr>
+			<h4><strong>Question 1</strong></h4>
+			<fieldset class="form-group">
+				<label for="question01">Do you like being outside?</label>
+				<br>
+				<div class="col-md-4">
+					<select class="form-control" id="question01" name="scores[0]">
+						<option>1 (Strongly Disagree)</option>
+						<option>2 (Disagree)</option>
+						<option>3 (Undecided)</option>
+						<option>4 (Agree)</option>
+						<option>5 (Strongly disagree)</option>
+					</select>
+				</div>
+			</fieldset>
+			<h4><strong>Question 2</strong></h4>
+			<fieldset class="form-group">
+				<label for="question02">Do you live living on land?</label>
+				<br>
+				<div class="col-md-4">
+					<select class="form-control" id="question02" name="scores[1]">
+						<option>1 (Strongly Disagree)</option>
+						<option>2 (Disagree)</option>
+						<option>3 (Undecided)</option>
+						<option>4 (Agree)</option>
+						<option>5 (Strongly Agree)</option>
+					</select>
+				</div>
+			</fieldset>
+			<h4><strong>Question 3</strong></h4>
+			<fieldset class="form-group">
+				<label for="question03">Do you like being underwater?</label>
+				<br>
+				<div class="col-md-4">
+					<select class="form-control" id="question03" name="scores[2]">
+						<option>1 (Strongly Disagree)</option>
+						<option>2 (Disagree)</option>
+						<option>3 (Undecided)</option>
+						<option>4 (Agree)</option>
+						<option>5 (Strongly Agree)</option>
+					</select>
+				</div>
+			</fieldset>
+			<h4><strong>Question 4</strong></h4>
+			<fieldset class="form-group">
+				<label for="question04">Do you like the heat?</label>
+				<br>
+				<div class="col-md-4">
+					<select class="form-control" id="question04" name="scores[3]"">
+						<option>1 (Strongly Disgree)</option>
+						<option>2 (Disagree)</option>
+						<option>3 (Undecided)</option>
+						<option>4 (Agree)</option>
+						<option>5 (Strongly Agree)</option>
+					</select>
+				</div>
+			</fieldset>
+			<h4><strong>Question 5</strong></h4>
+			<fieldset class="form-group">
+				<label for="question05">Does it matter what your animal friend looks like?</label>
+				<br>
+				<div class="col-md-4">
+					<select class="form-control" id="question05" name="scores[4]">
+						<option>1 (Strongly Disagree)</option>
+						<option>2 (Disagree)</option>
+						<option>3 (Undecided)</option>
+						<option>4 (Agree)</option>
+						<option>5 (Strongly Agree)</option>
+					</select>
+				</div>
+			</fieldset>
+			<h4><strong>Question 6</strong></h4>
+			<fieldset class="form-group">
+				<label for="question06">Do you like to nap?</label>
+				<br>
+				<div class="col-md-4">
+					<select class="form-control" id="question06" name="scores[5]">
+						<option>1 (Strongly Disagree)</option>
+						<option>2 (Disagree)</option>
+						<option>3 (Undecided)</option>
+						<option>4 (Agree)</option>
+						<option>5 (Strongly Agree)</option>
+					</select>
+				</div>
+			</fieldset>
+			
+			</fieldset><br>
+			<input type="submit" class="btn btn-primary" value="Request  Animal Friend" id="submit">
+		</form>
+	</div>
+	
+<div id="bestFriendModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">X</button>
+				<h2 class="modal-title">Your matched Animal</h2>
+			</div>
+			<div class="modal-body">
+				<h2 id="bestFriendName"></h2>
+				<img id="bestFriendImg" src="https://scontent-dfw1-1.xx.fbcdn.net/t31.0-8/13116244_10107568960519320_7024834722285826624_o.jpg" width=500px alt="Best Friend">
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+
+	$('#submit').on("click", function() {
+
+		var userInput = {
+			name: $('#name').val().trim(),
+			photo: $('#photo').val().trim(),
+			scores: [$('#question01').val().trim(), $('#question02').val().trim(), $('#question03').val().trim(), $('#question04').val().trim(), $('#question05').val().trim(), $('#question06').val().trim(), 
+		}
+
+		var currentURL = window.location.origin;
+
+		$.post(currentURL + '/api/friends', userInput, function(data) {
+
+			$("#bestFriendName").text(data.name);
+			$("#bestFriendImg").attr("src", data.photo);
+
+			$("#bestFriendModal").modal("show");
+
+		});
+
+	};
+
+</script>
+
+</body>
+</html>
